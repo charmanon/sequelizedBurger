@@ -1,0 +1,65 @@
+<div class="header"><h1>Better Burgers!</h1></div>
+
+<div class="container">
+  <div class = "row">
+    <div class = "col-md-5 col-lg-5" id = "uneaten">
+      <h2>Burgers not eaten!</h2>
+
+      <ul>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <li>
+              {{this.burger_name}}
+
+              <form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="sleepy" value="true">
+                <button class = "btn-success" type="submit">Omnomnomnom!</button>
+              </form>
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class ="col-md-1 col-lg-1"></div>
+
+    <div class = "col-md-5 col-lg-5" id = "eaten">
+      <h2>Burgers eaten!</h2>
+        <ul>
+          {{#each burgers}}
+            {{#if this.devoured}}
+              <li>
+                {{this.burger_name}}
+
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="sleepy" value="false">
+                  <label type="submit">That was yummy!</label>
+                </form>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <div class = "col-md-10">
+      <h2>Add a Burger</h2>
+      <form class="create-update-form" action="/" method="POST">
+
+        <div class="form-group">
+          <label for="burger_name">Burger Name:</label>
+          <input type="text" id="burger" name="burger_name">
+          <button class = "btn-primary" type="submit">Add Burger</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+
+
+  
